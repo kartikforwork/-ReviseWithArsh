@@ -1,0 +1,20 @@
+//leetcode 396
+class Solution {
+public:
+    int maxRotateFunction(vector<int>& nums) {
+        int max=-2147483648;
+        int sum_of_element=0;
+        int sum1=0;
+        for(int i=0;i<nums.size();i++){
+            sum_of_element=sum_of_element+nums[i];
+            sum1=sum1+i*nums[i];
+        }
+        max=sum1;
+        for(int i=0;i<nums.size()-1;i++){
+            int sum=sum1+sum_of_element-nums[nums.size()-1-i]*nums.size();
+            if(max<sum){max=sum;}
+            sum1=sum;
+        }
+        return max;
+    }
+};
