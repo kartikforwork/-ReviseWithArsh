@@ -1,0 +1,32 @@
+//leetcode 299
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+    vector<char> s(secret.length()),g(guess.length());
+    copy(secret.begin(), secret.end(), s.begin());
+    copy(guess.begin(), guess.end(), g.begin());
+    int cow=0,bull=0;
+    for(int i=0;i<s.size();i++){
+        if(s[i]==g[i]){
+            bull++;
+            s.erase(s.begin()+i);g.erase(g.begin()+i);
+            i--;
+        }
+    }
+    for(int i=0;i<s.size();i++){
+        for(int j=0;j<g.size();j++){
+                if(s[i]==g[j]){
+                    cow++;
+                    s.erase(s.begin()+i);g.erase(g.begin()+j);
+                    i--;
+                    break;
+                }
+            }
+        }
+    
+    string c=to_string(cow),b=to_string(bull);
+    string a="A",d="B";
+    string x=b+a+c+d;
+        return x;
+    }
+};
